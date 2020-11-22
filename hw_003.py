@@ -1,0 +1,7 @@
+num1=int(input('input num1='))
+num2=int(input('input num2='))
+diff = abs(num1-num2)
+print('Difference:%.2f'%diff)
+print('Sum:%.2f'%(num1+num2))
+print('Quotient:%.2f'%(num1/num2))
+print('Product:%.2f'%(num1*num2))
