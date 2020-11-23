@@ -12,9 +12,14 @@ def main():
     inputs = input().split()
     a = [int(i) for i in inputs]
     a.sort()
-    #a = [1,2,3]
+#    a = [1,2,3]
     result = permutation(a)
-#    print(result)
-    print(str(result)[1:-1])
+    
+#    temp = str(result)[1:-1]
+    for elem in result:
+        if elem != result[-1]:
+            print(str(elem)+',')
+        else:
+            print(elem)
 
 main()

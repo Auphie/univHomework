@@ -1,16 +1,23 @@
-def nthElement(l):
+def nthElement(l,n):
     if l == 1:
-        return '0'
+        return 0
     elif l == 2:
-        return '01'
+        if n == 1:
+            return 0
+        else:
+            return 1
     else:
-        reverse = ''
-        for i in nthElement(l-1):
-            reverse += str(1-int(i))
-        return str(nthElement(l-1))+reverse
+        if n%2 == 1:
+            return nthElement(l-1, 1)
+        else:
+            return nthElement(l-1, 0)
 
-inputs = input().split()
+def main():
+    inputs = input().split()
+#    inputs = ['25','16777215']
+    layer = int(inputs[0])
+    num = int(inputs[1])
+    a = nthElement(layer, num)
+    print(a)
 
-a = nthElement(int(inputs[0]))
-print('a=%s, n=%s'%(a,int(inputs[1])-1))
-print(a[int(inputs[1])-1])
+main()
