@@ -8,9 +8,12 @@ def nthElement(l,n):
             return 1
     else:
         if n%2 == 1:
-            return nthElement(l-1, 1)
+            return nthElement(l-1, (n+1)/2)
         else:
-            return nthElement(l-1, 0)
+            if int((n/2)%2) == 1:
+                return nthElement(l-1, (n/2)+1)
+            else:
+                return nthElement(l-1, (n/2)-1)
 
 def main():
     inputs = input().split()
