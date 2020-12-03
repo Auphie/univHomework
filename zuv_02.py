@@ -5,9 +5,9 @@ def QuickSort(data, left, right):
     target = data[left]
     while i!=j:
         while (data[j]>target) and (i<j):
-            j = j-1 #從右找起
+            j = j-1 #從右找起找比target小的
         while (data[i]<=target) and (i<j):
-            i+=1 #從左邊開始找比基準點大的
+            i+=1 #從左邊開始找比target大的
         if (i<j): #如果找到又沒與右邊的相遇，表示data[i]可以換到比較小的
             data[i], data[j] = data[j], data[i] #否則依定是小的最邊緣，
         print(data)                             #可以跟中間值交換

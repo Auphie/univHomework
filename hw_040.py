@@ -1,31 +1,50 @@
-s, n = sum(nums), len(nums)
-if s % k:
-    return False
-
-t = s//k
-nums.sort(reverse=True)
-vis = [0] * n
-
-def dfs(cur, u, p):
-    if u == k: return True
-    if cur == t: return dfs(0, u + 1, 0)
-    
-    i = p
-    while i < n:
-        if vis[i] or (cur + nums[i] > t): 
-            i += 1
-            continue
-            
-        vis[i] = 1
-        if dfs(cur + nums[i], u, i + 1): return True
-        vis[i] = 0
-        
-        if not cur or cur + nums[i] == t: return False 
-        
-        j = i
-        while j < n and nums[i] == nums[j]: j += 1 
-        i = j - 1
-        i += 1
-    return False
-
-return dfs(0, 0, 0)
+def isSubsetSum(arr, n, sum):
+    # Base Cases
+    if sum == 0:
+        return True
+    if n == 0 and sum != 0:
+        return False
+ 
+    # If last element is greater than sum, then
+    # ignore it
+    if arr[n-1] > sum:
+        return isSubsetSum(arr, n-1, sum)
+ 
+    ''' else, check if sum can be obtained by any of 
+    the following
+    (a) including the last element
+    (b) excluding the last element'''
+ 
+    return isSubsetSum(arr, n-1, sum) or isSubsetSum(arr, n-1, sum-arr[n-1])
+ 
+# Returns true if arr[] can be partitioned in two
+# subsets of equal sum, otherwise false
+ 
+ 
+def findPartion(arr, n, div):
+    # Calculate sum of the elements in array
+    sum = 0
+    for i in range(0, n):
+        sum += arr[i]
+    # If sum is odd, there cannot be two subsets
+    # with equal sum
+    if sum % div != 0:
+        return False
+ 
+    # Find if there is subset with sum equal to
+    # half of total sum
+    return isSubsetSum(arr, n, sum // div)
+ 
+ 
+# Driver code
+arr = [4,3,2,3,5,2,1]
+n = len(arr)
+div = 3
+ 
+# Function call
+if findPartion(arr, n, div) == True:
+    print("True")
+else:
+    print("False")
+ 
+# This code is contributed by shreyanshi_arun.
