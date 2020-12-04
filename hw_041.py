@@ -1,19 +1,18 @@
-def calCount(num):
-    counts = 0
-    if (len(num)==0 or int(num[0])==0):
-        return 0
-    counts += 1
-    if (len(num)>1 and int(num[0:2])<27):
-        counts+=1
-    else: calCount(num[1:])
-    if (len(num)>2 and int(num[1:3])<27):
-        counts+=1
-    else: calCount(num[1:])
-    return counts
+def cntTypes(str_num):
+    n=len(str_num)
+    if n==0: return 1
+    if n==1: return 1 if int(str_num)>0 else 0
+    if n>=2:
+        m = int(str_num[0:2])
+        if 10 <= m <= 26:
+            return cntTypes(str_num[2:])+cntTypes(str_num[1:])
+        elif m < 10:
+            return 0
+        elif str_num[1] == '0':
+            return 0
+        else:
+            return cntTypes(str_num[1:])
 
-def main():
-    a=input()
-    result = calCount(a)
-    print(result)
-
-main()
+s='2123'
+result = cntTypes(s)
+print(result)

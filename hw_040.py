@@ -35,11 +35,12 @@ def findPartion(arr, n, div):
     # half of total sum
     return isSubsetSum(arr, n, sum // div)
  
- 
+string = input().split()
+arr = [int(i) for i in string]
+div = int(input())
 # Driver code
-arr = [4,3,2,3,5,2,1]
+#arr = [4,3,2,3,5,2,1]
 n = len(arr)
-div = 3
  
 # Function call
 if findPartion(arr, n, div) == True:
