@@ -13,6 +13,6 @@ def cntTypes(str_num):
         else:
             return cntTypes(str_num[1:])
 
-s='2123'
+s=input()
 result = cntTypes(s)
 print(result)

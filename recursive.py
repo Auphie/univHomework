@@ -1,14 +1,14 @@
-def palindrome(wordPal,index):
-    strlen=len(wordPal)-(index+1)
-    print('wordPal[index]=%s,wordPal[strlen]=%s'%(wordPal[index],wordPal[strlen]))
-    if (wordPal[index]==wordPal[strlen]):
-        print('index=%s,strlen=%s'%(index,strlen))
-        if (index+1==strlen or index==strlen):
-            print("True")
-            return
-        dd(wordPal[1:-1], 0)
-    else:
-        print('False')
+def palindrome(wordPal):
+    if len(wordPal) <2:
+        return 'True'
+    if (wordPal[0]==wordPal[-1]):
+        result = palindrome(wordPal[1:-1])
+    else: return 'False'
+    return result
+
+a='amma'
+result = palindrome(a)
+print(result)
 
 def permutation(s):
     if len(s)==1:
