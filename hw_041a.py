@@ -1,7 +1,8 @@
 def cntTypes(str_num):
     n=len(str_num)
     if n==0: return 0
-    if n==1: return 1
+    if n==1 and int(str_num)>0: return 1
+    elif int(str_num) ==0:return 0
     if n==2: 
         if (int(str_num) == 0 or int(str_num)>26):
             return 0
