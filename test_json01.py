@@ -8,11 +8,11 @@ temp = []
 for i in (a,b,c,d,e,f):
     z = i.split()
     temp.append(z)
-#print(temp)
+print(temp)
 
 data = {}
 for x in temp:
-#    x = input().split()
+    # method_1:
     sub = {}
     if len(x)==3:
         if x[0] in data:
@@ -24,5 +24,15 @@ for x in temp:
         data[x[0]] = sub
     elif len(x) == 2:
         data[x[0]] = x[1]
+    
+"""
+# method_2:
+    sub={}
+    if len(x)==2:
+        data[x[0]]=x[1]
+    elif len(x)>=2:
+        data[x[0]]={}
+        data[x[0]][x[1]]=x[2]
+"""
 
 print(data)
