@@ -1,51 +1,33 @@
-def isSubsetSum(arr, n, sum):
-    # Base Cases
-    if sum == 0:
+def rm(nums, con):
+    for i in con:
+        nums.remove(i)
+
+def check(nums, index, value, con):
+    if index >= len(nums) or value < nums[index]:
+        return False
+    elif nums[index]==value:
+        con.append(nums[index])
         return True
-    if n == 0 and sum != 0:
+    elif check(nums, index+1, value, con)==True:
+        return True
+    elif check(nums, index+1, value-nums[index], con)==True:
+        con.append(nums[index])
+        return True
+    else: return False
+
+def compute(div, nums, value):
+    if div==0:
+        return True
+    con = []
+    if check(nums, 0, value, con)==False:
         return False
- 
-    # If last element is greater than sum, then
-    # ignore it
-    if arr[n-1] > sum:
-        return isSubsetSum(arr, n-1, sum)
- 
-    ''' else, check if sum can be obtained by any of 
-    the following
-    (a) including the last element
-    (b) excluding the last element'''
- 
-    return isSubsetSum(arr, n-1, sum) or isSubsetSum(arr, n-1, sum-arr[n-1])
- 
-# Returns true if arr[] can be partitioned in two
-# subsets of equal sum, otherwise false
- 
- 
-def findPartion(arr, n, div):
-    # Calculate sum of the elements in array
-    sum = 0
-    for i in range(0, n):
-        sum += arr[i]
-    # If sum is odd, there cannot be two subsets
-    # with equal sum
-    if sum % div != 0:
-        return False
- 
-    # Find if there is subset with sum equal to
-    # half of total sum
-    return isSubsetSum(arr, n, sum // div)
- 
-string = input().split()
-arr = [int(i) for i in string]
-div = int(input())
-# Driver code
-#arr = [4,3,2,3,5,2,1]
-n = len(arr)
- 
-# Function call
-if findPartion(arr, n, div) == True:
-    print("True")
-else:
-    print("False")
- 
-# This code is contributed by shreyanshi_arun.
+    print(con)
+    rm(nums, con)
+    return compute(div-1, nums, value)
+
+def f(div, nums):
+    print(compute(div, nums, sum(nums)/div), '---')
+
+nums = [4,3,2,3,5,2,1]
+div = 4
+f(div, nums)

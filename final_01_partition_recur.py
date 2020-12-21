@@ -15,21 +15,14 @@ def check(nums, index, value, con):
         return True
     else: return False
 
-def compute(div, nums, index, value):
+def compute(div, nums, value):
     if div==0:
         return True
-    elif len(nums)==0:
-        return True
-    elif len(nums)>0 and index ==0:
+    con = []
+    if check(nums, 0, value, con)==False:
         return False
-    else:
-        if nums[index] <= value:
-            deduction = nums[index]
-            nums.pop(index)
-            compute(div-1, nums, index, value-deduction)
-        else:
-            
-
+    print(con)
+    rm(nums, con)
     return compute(div-1, nums, value)
 
 def f(div, nums):
