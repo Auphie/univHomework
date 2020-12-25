@@ -17,17 +17,31 @@ def cal_counts(item, keywords):
     new_dict['counts'] = count
     return new_dict
 
+def toNotify(text, keywords):
+    for keyword in keywords:
+#        text.isupper() if 
+        index = text.lower().find(keyword.lower(), 0)
+        while index != -1:
+            text = text.replace(text[index:index + len(keyword)], keyword.upper(), 1)
+            index = text.lower().find(keyword.lower(), index + 1)
+    print(text)
+
 content_counts =[]
 
-for item in (a,b,c,d,e):
+num = input()
+strings = []
+for i in range(int(num)):
+    string = input()
+    strings.append(string)
+
+keywords = input().split()
+
+for item in strings:
     content_counts.append(cal_counts(item, keywords))
 
 result = sorted(content_counts, key=lambda x: x.get('counts'), reverse=True)
 
-def toNotify(text, keywords):
-    text.replace('Taipei', '---')
-    print(text)
-
+#print('content=',content_counts)
 
 for i in result:
     toNotify(i['content'], keywords)
