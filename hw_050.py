@@ -35,7 +35,13 @@ matrixA = data[indices[0]+1:indices[1]]
 matrixB =data[indices[1]+1:]
 matAt = transpose(matrixA)
 matBt = transpose(matrixB)
+print('A=', matrixA)
+print('B=', matrixB)
+print('At=', matAt)
+print('Bt=', matBt)
+
 AtBt = multiply(matAt, matBt)
+print(AtBt)
 
 codes=''
 for row in AtBt:
@@ -49,11 +55,5 @@ print(''.join(result))
 
 
 """
-data = []
-while True:
-    inputs = input()
-    if inputs == '0':
-        break
-    elms = inputs.split()
-    data.append(elms)
+
 """
