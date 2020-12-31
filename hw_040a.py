@@ -1,41 +1,33 @@
-def rm(nums, con):
-    for i in con:
-        nums.remove(i)
+def rm(elements, lists):
+    for i in lists:
+        print('i=%s,lists=%s'%(i,lists))
+        elements.remove(i)
 
-def check(nums, index, value, con):
-    if index >= len(nums) or value < nums[index]:
+def check(elements, index, group_sum, lists):
+    if index >= len(elements) or group_sum < elements[index]:
         return False
-    elif nums[index]==value:
-        con.append(nums[index])
+    elif elements[index]==group_sum:
+        lists.append(elements[index])
         return True
-    elif check(nums, index+1, value, con)==True:
+    elif check(elements, index+1, group_sum, lists)==True:
         return True
-    elif check(nums, index+1, value-nums[index], con)==True:
-        con.append(nums[index])
+    elif check(elements, index+1, group_sum-elements[index], lists)==True:
+        lists.append(elements[index])
         return True
     else: return False
 
-def compute(div, nums, index, value):
-    if div==0:
+def compute(elements, groups, group_sum):
+    index = 0
+    if groups==0:
         return True
-    elif len(nums)==0:
-        return True
-    elif len(nums)>0 and index ==0:
+    lists = []
+    if check(elements, index, group_sum, lists)==False:
         return False
-    else:
-        if nums[index] <= value:
-            deduction = nums[index]
-            nums.pop(index)
-            compute(div-1, nums, index, value-deduction)
-        else:
-            
+    rm(elements, lists)
+    print(lists)
+    return compute(elements, groups-1, group_sum)
 
-    return compute(div-1, nums, value)
-
-def f(div, nums):
-    print(compute(div, nums, sum(nums)/div), '---')
-
-nums = [4,3,2,3,5,2,1]
-sorted_nums = sorted(nums, reverse=True)
-div = 4
-f(div, nums)
+elements = [4,3,2,3,5,2,1]
+groups = 2
+group_sum = sum(elements)/groups
+compute(elements, groups, group_sum)
