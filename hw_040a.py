@@ -1,33 +1,30 @@
-def rm(elements, lists):
-    for i in lists:
-        print('i=%s,lists=%s'%(i,lists))
-        elements.remove(i)
-
-def check(elements, index, group_sum, lists):
-    if index >= len(elements) or group_sum < elements[index]:
+def compute(elements, groups, group_sum, i):
+#    print('elements=',elements)
+#    print('groups=',groups)
+#    print('group_sum=',group_sum)
+#    print('i=',i)
+    if len(elements)==0:
+        return True
+    if i >= len(elements):
         return False
-    elif elements[index]==group_sum:
-        lists.append(elements[index])
-        return True
-    elif check(elements, index+1, group_sum, lists)==True:
-        return True
-    elif check(elements, index+1, group_sum-elements[index], lists)==True:
-        lists.append(elements[index])
-        return True
-    else: return False
-
-def compute(elements, groups, group_sum):
-    index = 0
-    if groups==0:
-        return True
-    lists = []
-    if check(elements, index, group_sum, lists)==False:
+    if elements[i] > total:
         return False
-    rm(elements, lists)
-    print(lists)
-    return compute(elements, groups-1, group_sum)
+    if group_sum==0:
+        groups -= 1
+        return compute(elements, groups, total, 0)
+    if elements[i] <= group_sum:
+        new_sum = group_sum - elements[i]
+        elements.remove(elements[i])
+        return compute(elements, groups, new_sum, 0)
+    else: 
+        return compute(elements, groups, group_sum, i+1)
 
-elements = [4,3,2,3,5,2,1]
-groups = 2
-group_sum = sum(elements)/groups
-compute(elements, groups, group_sum)
+elements = [5,3,2,4,3,1,2]
+elements.sort(reverse=True)
+groups = 4
+group_sum = total = sum(elements)/groups
+if sum(elements)%groups !=0:
+    print('No Way')
+else:
+    print('Can' if compute(elements, groups, total, i=0)
+        else 'No way')

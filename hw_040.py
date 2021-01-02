@@ -1,33 +1,32 @@
-def rm(nums, con):
-    for i in con:
-        nums.remove(i)
+def rm(elements, lists):
+    for i in lists:
+        elements.remove(i)
 
-def check(nums, index, value, con):
-    if index >= len(nums) or value < nums[index]:
+def check(elements, index, group_sum, lists):
+    if index >= len(elements) or group_sum < elements[index]:
         return False
-    elif nums[index]==value:
-        con.append(nums[index])
+    elif elements[index]==group_sum:
+        lists.append(elements[index])   #append first num
         return True
-    elif check(nums, index+1, value, con)==True:
+    elif check(elements, index+1, group_sum, lists)==True:
         return True
-    elif check(nums, index+1, value-nums[index], con)==True:
-        con.append(nums[index])
+    elif check(elements, index+1, group_sum-elements[index], lists)==True:
+        lists.append(elements[index])   #append remaining nums
         return True
     else: return False
 
-def compute(div, nums, value):
-    if div==0:
+def compute(elements, groups, group_sum):
+    index = 0
+    lists = []
+    if groups==0:
         return True
-    con = []
-    if check(nums, 0, value, con)==False:
+    if check(elements, index, group_sum, lists)==False:
         return False
-    print(con)
-    rm(nums, con)
-    return compute(div-1, nums, value)
+    print(lists)
+    rm(elements, lists)
+    return compute(elements, groups-1, group_sum)
 
-def f(div, nums):
-    print(compute(div, nums, sum(nums)/div), '---')
-
-nums = [4,3,2,3,5,2,1]
-div = 4
-f(div, nums)
+elements = [4,3,2,3,5,2,2]
+groups = 3
+group_sum = sum(elements)/groups
+compute(elements, groups, group_sum)
