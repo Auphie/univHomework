@@ -2,25 +2,29 @@ import numpy as np
 import copy
 
 def get_input(board):    
-    for i in range(3):
+    for i in range(10):
         inputs = input()
         board[i] = [int(elm) for elm in inputs]
     return board
 
-def checkWinner(data, player):
-    diagonalL = diagonalR = 0
-    for i in range(3): 
-        if ((data[i,:]==player).sum()==3    #row count
-            or (data[:,i]==player).sum()==3 #col count
+def checkWinner(data, player): 
+    result = False
+    diagonalL = np.data.diagonal()
+    diagonalR = np.fliplr(data).diagonal()
+    for row in range(len(data)-1):
+        for col in range(len(data)-6):
+            if (((data[row,col:col+5]==player).sum()==5 
+            and (data[row,col+5]!=player))
+            or
+            ((data.T[row,col:col+5]==player).sum()==5 and (data.T[row,col+5]!=player))
             ):
-           return True
-        if data[i][i] == player:          #left diag
-            diagonalL += 1
-        if data[i][2-i] == player:        #right diag
-            diagonalR += 1
-    if (diagonalL == 3 or diagonalR ==3):
-        return  True
-    return False 
+                result =  True
+    for row in range(len(diagonalL-6)):
+        if ((diagonalL[row:row+5]==player).sum()==5 and (ddiagonalL[ro+5]!=player)):
+            result =  True
+        elif ((diagonalR[row:row+5]==player).sum()==5 and (ddiagonalR[ro+5]!=player)):
+            result =  True
+    return result
   
 def winMove(data, player):
     tempBoard = copy.deepcopy(data)
@@ -51,7 +55,7 @@ def check_result(data):
     return result
 
 def main():
-    board = np.zeros((3,3))
+    board = np.zeros((11,11))
     data = get_input(board)
     #data = np.array([[2, 1, 0],[2, 1, 0],[0,0,0]])
     result = check_result(data)
