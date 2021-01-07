@@ -1,9 +1,9 @@
-def permutation(s):
+def permutation(n):
     result = []
-    if len(s)==1:
-        return [s]
-    for i in range(len(s)):
-        result += [s[i]+ sub for sub in permutation(s[:i]+s[i+1:])]
+    if len(n)==1:
+        return [n]
+    for i in range(len(n)):
+        result += [n[i]+ sub for sub in permutation(n[:i]+n[i+1:])]
     return result
 
 def is_diff(nums):
@@ -12,12 +12,12 @@ def is_diff(nums):
             return False
     return True
 
-s = '111222223'
+input_num = '111222223'
 electors = []
-permutations = set(permutation(s))
-for i in permutations:
-    if is_diff(i)==True:
-        electors.append(i)
+permutations = set(permutation(input_num))
+for case in permutations:
+    if is_diff(case)==True:
+        electors.append(case)
 
 print('electors=',electors)
 print('result=', min(electors))
