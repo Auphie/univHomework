@@ -18,10 +18,8 @@ for i in num_set:
     index_i = input_num.index(i)
     new_list = [input_num[k] for k in [j for j in range(len(input_num)) if j != index_i]]
     permutation = seeking([i], new_list, 0)
-    results.append(permutation)
     if len(permutation)==len(input_num):
         results.append(permutation)
 
-electors = [j for j in results if len(j)== len(input_num)]
-final_result = min(electors)
+final_result = min(results)
 print(''.join(final_result))
