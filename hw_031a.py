@@ -1,39 +1,27 @@
-def sortBy(e):
-    return e[0]*10+(9-e[1])
+def seeking(result, num_pocket, index):
+    try:
+        if num_pocket[index] != result[-1]:
+            result.append(num_pocket[index])
+            num_pocket.pop(index)
+            seeking(result, num_pocket, 0)
+        else:
+            seeking(result, num_pocket, index+1)
+    except IndexError:
+        result = 'no'
+    return result
 
-string = input().split()
-#string = ['1', '1', '1', '2', '3', '2', '2', '2', '2']
-str_int = [int(i) for i in string]
-index = [i for i in range(10)]
+input_num = '111222223'
+results = []
+num_set = set([i for i in input_num])
 
-count_list = []
-for i in range(10):
-    count = str_int.count(i)
-    count_list.append(count)
+for i in num_set:
+    index_i = input_num.index(i)
+    new_list = [input_num[k] for k in [j for j in range(len(input_num)) if j != index_i]]
+    permutation = seeking([i], new_list, 0)
+    results.append(permutation)
+    if len(permutation)==len(input_num):
+        results.append(permutation)
 
-pairs = list(zip(count_list, index))
-pairs.sort(key=sortBy, reverse=True)
-
-#print(pairs)
-
-sorted_list = []
-for k,v in pairs:
-    sorted_list += (str(v)*k)
-
-result = []
-while len(sorted_list) > 0:
-#    print('1:',sorted_list[0])
-    result.append(sorted_list[0])
-    if len(sorted_list)>1:
-        temp_list = [i for i in sorted_list if i != sorted_list[0]]
-    #    print('2:',temp_list[0])
-        second_no = temp_list[0]
-    #    print('2nd_no', second_no)
-    #    print('2nd_index', sorted_list.index(second_no))
-        result.append(temp_list[0])
-        sorted_list.pop(sorted_list.index(second_no))
-        sorted_list.pop(0)
-    else:
-        break
-
-print(''.join(result))
+electors = [j for j in results if len(j)== len(input_num)]
+final_result = min(electors)
+print(''.join(final_result))

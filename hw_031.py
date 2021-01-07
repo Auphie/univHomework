@@ -1,39 +1,43 @@
-def sortBy(e):
-    return e[0]*10+(9-e[1])
+def swap(a, b):
+    tmp = a
+    a = b
+    b = tmp
+    return a, b
 
-string = input().split()
-#string = ['1', '1', '1', '2', '3', '2', '2', '2', '2']
-str_int = [int(i) for i in string]
-index = [i for i in range(10)]
 
-count_list = []
-for i in range(10):
-    count = str_int.count(i)
-    count_list.append(count)
+def check_list(list_str):
+    for i in range(len(list_str) - 1):
+        if list_str[i] == list_str[i + 1]:
+            return False
+    return True
 
-pairs = list(zip(count_list, index))
-pairs.sort(key=sortBy, reverse=True)
 
-#print(pairs)
+def start(list1):
+    for i in range(len(list1) - 1):
+        if list1[i] != list1[i + 1]:
+            continue
+        else:
+            for j in range(i + 2, len(list1)):
+                if list1[i + 1] != list1[j]:
+                    list1[i + 1], list1[j] = swap(list1[i + 1], list1[j])
+                    break
 
-sorted_list = []
-for k,v in pairs:
-    sorted_list += (str(v)*k)
+    while (check_list(list1) == False):
+        tmp = list1[-1]
+        list1.pop()
+        for i in range(len(list1) - 2, -1, -1):
+            list1.insert(i, tmp)
+            if check_list(list1) == True:
+                break
+            else:
+                del list1[i]
 
-result = []
-while len(sorted_list) > 0:
-#    print('1:',sorted_list[0])
-    result.append(sorted_list[0])
-    if len(sorted_list)>1:
-        temp_list = [i for i in sorted_list if i != sorted_list[0]]
-    #    print('2:',temp_list[0])
-        second_no = temp_list[0]
-    #    print('2nd_no', second_no)
-    #    print('2nd_index', sorted_list.index(second_no))
-        result.append(temp_list[0])
-        sorted_list.pop(sorted_list.index(second_no))
-        sorted_list.pop(0)
-    else:
-        break
+    if check_list(list1) == True:
+        for i in list1:
+            print(i, end='')
 
-print(''.join(result))
+
+num = input()
+list1 = [i for i in num]
+list1.sort()
+start(list1)
