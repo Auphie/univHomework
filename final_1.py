@@ -1,21 +1,31 @@
-univ_info = {'NSYSU': ['NC', 'CT', 'NS', 'NM'], 'NTU': ['BC', 'NC', 'CT', 'NS'], 'NCCU': ['BC', 'NL', 'HL'], 'Providence': ['BC', 'NC'], 'NTHU': ['BC', 'NS']}
-
+input_univ1='NSYSU NC CT NS NM'
+input_univ2='NTU BC NC CT NS'
+input_univ3='NCCU BC NL HL'
+input_univ4='Providence BC NC'
+input_univ5='NTHU BC NS'
+input_op1='BC NS + CT HL'       #case1. '+'= or, ' '= and
+input_op2='NM + BC NL + BC NC'  #case2
+"""
 univ_info = {}
 for i in range(5):
     s = input().split()
     univ_info[s[0]] = s[1:]
 print(univ_info)
-b = 'BC NS + CT HL'.split('+')
-c = [x.strip() for x in b]
+"""
+univ_info = {'NSYSU': ['NC', 'CT', 'NS', 'NM'], 'NTU': ['BC', 'NC', 'CT', 'NS'], 'NCCU': ['BC', 'NL', 'HL'], 'Providence': ['BC', 'NC'], 'NTHU': ['BC', 'NS']}
 
-def filter_univ(c, univ_info):
-    for k, v in univ_info.items():
-        result = True
-        for criterion in d.strip().split():
+def filter_univ(criteria, univ_info):
+    for k, v in univ_info.items():  #list univ to be examed
+        result = 1  
+        for criterion in criteria:  #percise query
             if criterion not in v:
-                result = False
-        if result == True:
-            print('result=', k)
+                result *= 0 # to verify 'and' condition
+        if result == 1:
+            print('result=', k, end=' ')
 
-for d in c:
-    filter_univ(d, univ_info)
+for case in (input_op1, input_op2):
+    options_str = case.split('+')
+    options = [case.strip().split(' ') for case in options_str]
+    for criteria in options:    #to practice 'or' query
+        filter_univ(criteria, univ_info)    #precise query
+    print()
