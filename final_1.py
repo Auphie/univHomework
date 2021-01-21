@@ -3,8 +3,8 @@ input_univ2='NTU BC NC CT NS'
 input_univ3='NCCU BC NL HL'
 input_univ4='Providence BC NC'
 input_univ5='NTHU BC NS'
-input_op1='BC NS + CT HL'       #case1. '+'= or, ' '= and
-input_op2='NM + BC NL + BC NC'  #case2
+input_request1='BC NS + CT HL'       #case1. '+'= or, ' '= and
+input_request2='NM + BC NL + BC NC'  #case2
 """
 univ_info = {}
 for i in range(5):
@@ -21,11 +21,10 @@ def filter_univ(criteria, univ_info):
             if criterion not in v:
                 result *= 0 # to verify 'and' condition
         if result == 1:
-            print('result=', k, end=' ')
+            print(k, end=' ')
 
-for case in (input_op1, input_op2):
-    options_str = case.split('+')
-    options = [case.strip().split(' ') for case in options_str]
+for request in (input_request1, input_request2):
+    print('\nresult = ', end='')
+    options = request.split('+')
     for criteria in options:    #to practice 'or' query
-        filter_univ(criteria, univ_info)    #precise query
-    print()
+        filter_univ(criteria.split(), univ_info)    #precise query
