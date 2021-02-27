@@ -1,0 +1,35 @@
+# 1 "D:\\Mydocument\\�ǲ�\\NTUT\\programming\\Homework\\.vscode\\launch.json"
+# 1 "D:\\Mydocument\\�ǲ�\\NTUT\\programming\\Homework//"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "D:\\Mydocument\\�ǲ�\\NTUT\\programming\\Homework\\.vscode\\launch.json"
+{
+
+
+
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "cpp.exe - 建置及偵錯使用中的檔案",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw-w64\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "啟用 gdb 的美化顯示",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: cpp.exe 建置使用中檔案"
+        }
+    ]
+}
