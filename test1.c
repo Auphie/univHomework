@@ -1,8 +1,7 @@
 #include <stdio.h>
 int main(void) {
-    int state=0, score=0;
-    char input;
-    for (int i=0; i<5; i++) {
+    int state=0, input=0, score=0, i=0;
+    for (i=0; i<5; i++) {
         scanf("%c%*c", &input);
         if (input != 'H') {
             state = (state <<((int)input-48)) | (1<<((int)input-49));
