@@ -3,5 +3,9 @@
     "code-runner.executorMap": {
         "cpp": "cd $dir ; g++ \"$fileName\" -o \"$fileNameWithoutExt\" ; .\\\"$fileNameWithoutExt\"",
         "c": "cd $dir ; g++ \"$fileName\" -o \"$fileNameWithoutExt\" ; .\\\"$fileNameWithoutExt\""
+    },
+    "files.associations": {
+        "stdio.h": "c",
+        "stdlib.h": "c"
     }
 }
