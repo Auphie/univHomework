@@ -1,13 +1,17 @@
 #include <stdio.h>
 
+int f(int n){
+    if (n==1)
+        return 1;
+    else if (n%2==0){
+        n = n-1;
+        return n+f(n-2);
+    }
+    else
+        return n+f(n-2);
+}
+
 int main(){
-    int inVoice, outVoice, localVoice, inText, outText, bestChoice;
-    int minPrice, pA, pB, pC;
-    inVoice=300;
-    outVoice=300;
-    localVoice=300;
-    inText=300;
-    outText=300;
-    pA = (inVoice*0.08)+(outVoice*0.1393)+(localVoice*0.1349)+(inText*1.1287)+(outText*1.4803);
-    printf("%d", pA);
+    printf("%d",f(8));
+    return 0;
 }

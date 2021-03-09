@@ -3,7 +3,7 @@
 
 void printMarks(int times, char mark){
     for (int i=0; i<times; i++){
-        printf(" %c", mark);
+        printf("%c", mark);
     }
 }
 
