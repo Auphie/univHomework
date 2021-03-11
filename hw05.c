@@ -1,38 +1,52 @@
 #include <stdio.h>
 
 int main(void) {
-int pari, lesson[3][5];
-/*
-lesson[0][0]=1001;
-lesson[0][1]=3;
-lesson[0][2]=11;
-lesson[0][3]=12;
-lesson[0][4]=13;
-lesson[1][0]=1002;
-lesson[1][1]=3;
-lesson[1][2]=21;
-lesson[1][3]=22;
-lesson[1][4]=23;
-lesson[2][0]=1003;
-lesson[2][1]=3;
-lesson[2][2]=31;
-lesson[2][3]=32;
-lesson[2][4]=23;
-*/
-for (int i=0; i<3; i++) {
-    for (int j=0; j<5; j++) {
-        scanf("%d", &lesson[i][j]);
-    }
-}
+    int courseN1, courseN2, courseN3, class1, class2, class3;
 
-for (int pair=0; pair<2; pair++) {
-    for (int i=2; i<5; i++) {
-        for (int j=pair+1; j<3; j++) {
-            if(lesson[j][i] == lesson[pair][i]){
-                printf("%d and %d conflict on %d", lesson[pair][0],lesson[j][0],lesson[j][i]);
+    scanf("%d", &class1);
+    scanf("%d", &courseN1);
+    int lesson1[courseN1];
+    lesson1[0]=class1;
+    for (int i=1; i<=courseN1; i++) 
+        scanf("%d", &lesson1[i]);
+
+    scanf("%d", &class2);
+    scanf("%d", &courseN2);
+    int lesson2[courseN2];
+    lesson2[0]=class2;
+    for (int i=1; i<=courseN2; i++) 
+        scanf("%d", &lesson2[i]);
+
+    scanf("%d", &class3);
+    scanf("%d", &courseN3);
+    int lesson3[courseN3];
+    lesson3[0]=class3;
+    for (int i=1; i<=courseN3; i++) 
+        scanf("%d", &lesson3[i]);
+
+    for (int i=1; i<courseN1+1; i++) {
+        for (int j=1; j<courseN2+1; j++) {
+            if(lesson1[i] == lesson2[j]){
+                printf("%d and %d conflict on %d\n", lesson1[0],lesson2[0],lesson1[i]);
             }
         }
     }
-}
+
+    for (int i=1; i<courseN1+1; i++) {
+        for (int j=1; j<courseN3+1; j++) {
+            if(lesson1[i] == lesson3[j]){
+                printf("%d and %d conflict on %d", lesson1[0],lesson3[0],lesson1[i]);
+            }
+        }
+    }
+
+    for (int i=1; i<courseN2+1; i++) {
+        for (int j=1; j<courseN3+1; j++) {
+            if(lesson2[i] == lesson3[j]){
+                printf("%d and %d conflict on %d", lesson2[0],lesson3[0],lesson2[i]);
+            }
+        }
+    }
+
     return 0;
 }
