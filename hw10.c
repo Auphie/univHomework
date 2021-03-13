@@ -20,5 +20,5 @@ int main(void){
         scanf("%d %d", &n, &k);
         GrayCode(n, k);
         scanf("%d", &next);
-    };
+    }
 }
