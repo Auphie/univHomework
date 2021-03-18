@@ -27,7 +27,7 @@ int bitToDecimal(char *n){
 
 void decimalToBin(int n){
     int k;
-    for (int i = 3; i >= 0; i--)  {
+    for (int i = 10; i >= 0; i--)  {
         k = n >> i;
         if (k & 1)
         printf("1");
@@ -38,14 +38,18 @@ void decimalToBin(int n){
 }
 
 int main(void){
-    int decimal, counts, next=0;
-    char bitN[9];
+    int i, next=0;
     while (next != -1) {
+        int decimal=0, counts=0, total=0;
+        char bitN[9];
 //        fflush(stdin);
         scanf("%s", bitN);
         decimal = bitToDecimal(bitN);
-        counts = simuCounts(decimal);
-        decimalToBin(counts);
+        for (i=1; i<=decimal; i++){
+            counts = simuCounts(i);
+            total+=counts;
+        }
+        decimalToBin(total);
 //        fflush(stdin);
         scanf("%d", &next);
     }
