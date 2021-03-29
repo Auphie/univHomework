@@ -1,12 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-void f(int a, int *b, int *c) { 
-int d; a = 2; 
-*b = 3; c = &a; d = 5; 
-} 
-int main() { 
-int a=1,b=2,c=3,d=4; 
-f(a, &b, &c); 
-printf("%i %i %i %i\n", a, b, c, d); 
-return 0;
+
+int eval(int n){
+if (n==1) return 1;
+else if (n==0) return 0;
+else {
+    n=n-2;
+    eval(n)
 }
+
+int main(void){
+    int n=3;
+    printf("%d", eval(n))       
+    return 0;
+} 
