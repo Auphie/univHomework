@@ -33,7 +33,7 @@ void reduction(int up,int down) {
     }
     else if (quotient>0)
         printf("+%d",quotient);
-    else 
+    else if (quotient<0)
         printf("%d",quotient);
 }
 
@@ -43,12 +43,15 @@ void reduction2(int up,int down) {
     down/=GCD;
     quotient = up/down;
     remainder = up%down;
-    if (abs(quotient)>0 && remainder!=0){
-        up = up - quotient*down;
-        if (up<0 || down <0)
-            printf("-%d(%d/%d)",abs(quotient), abs(up),abs(down));
-        else
-            printf("+%d(%d/%d)",abs(quotient), up, down);
+    if (remainder!=0){
+        if (abs(quotient)>0){
+            up = up - quotient*down;
+            if (up<0 || down <0)
+                printf("-%d(%d/%d)",abs(quotient), abs(up),abs(down));
+            else
+                printf("%d(%d/%d)",abs(quotient), up, down);
+        }
+        else printf("%d/%d",up, down);
     }
     else if (remainder==0){
         if (abs(quotient)>1)
