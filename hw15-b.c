@@ -2,25 +2,22 @@
 #include <string.h>
 #define LEN 40
 
-int Input(char n[]){
-	char s[LEN];
+void Input(char reverse[]){
+	char input[LEN];
 	int i, size;
 	for(i=0; i<LEN; i++)
-		n[i]=0;
-	if(scanf("%s", s)<1)
-		return -1;
-	size=strlen(s);
-	for(i=0; i<size; i++)
-		n[i]=s[size-i-1]-'0';
-	return 0;
-}
+		reverse[i]=0;       // create rev=[0,0,0,0,0,0]
+	scanf("%s", input);     // scan s = '123'
+	size=strlen(input);     // sizeof(s) = 3, i<size
+	for(i=0; i<size; i++)   // rev[i] = s[size-i-1]  
+		reverse[i] = input[size-i-1]-'0'; 
+}                           // rev=[3,2,1,0,0,0]
 
 void Print(char n[]){
 	int i;
 	for(i=LEN-1; i>0; i--)
 		if(n[i]!=0) break;
-	for(; i>=0; i--)
-		printf("%d", n[i]);
+	    else        printf("%d", n[i]);
 	printf("\n");
 }
 
