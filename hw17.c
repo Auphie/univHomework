@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #define SIZE 20
+
 int square(char data[SIZE], int width, int* i){
     int total=0, step=0, len=strlen(data);
     while((*i)<len){
@@ -21,10 +22,14 @@ int square(char data[SIZE], int width, int* i){
     return total;
 }
 
+void plot(int x, int y){
+    
+}
+
 int main(void){
     int len, i=0, width, total=0;
     char data[SIZE]="2021000200110";
-    width=8;
+    width=4;
     total = square(data, width, &i);
     printf("%d\n",total);
     //scanf("%s",&data); scanf("%d",&n);length = strlen(data); 

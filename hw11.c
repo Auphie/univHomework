@@ -26,13 +26,13 @@ int bitToDecimal(char *n){
 }
 
 void decimalToBin(int n){
-    int k;
-    for (int i = 10; i >= 0; i--)  {
+    int digit = 11, k;
+    for (int i = digit-1; i >= 0; i--)  {
         k = n >> i;
-        if (k & 1)
-        printf("1");
+        if (k&1 == 1)
+            printf("1");
         else
-        printf("0");
+            printf("0");
     }
     printf("\n");
 }
