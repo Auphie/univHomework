@@ -3,7 +3,7 @@
 
 int noDuplicate(int data[]){
     int result = 1;
-    for (int i=0; i<4; i++){
+    for (int i=0; i<3; i++){
         for (int j=i+1; j<4; j++){
             if (data[i]==data[j])
                 return 0;
