@@ -28,7 +28,7 @@ void plot(int x, int y){
 
 int main(void){
     int len, i=0, width, total=0;
-    char data[SIZE]="2021000200110";
+    char data[SIZE]="202001010";
     width=4;
     total = square(data, width, &i);
     printf("%d\n",total);
