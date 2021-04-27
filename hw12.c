@@ -37,20 +37,16 @@ void reduction(int up,int down) {
 }
 
 void add(int up1,int down1,int up2,int down2) {
-    int num1, num2, LCM=lcm(down1,down2), up, down;
-    num1=LCM/down1*up1;
-    num2=LCM/down2*up2;
-    up=num1+num2;
+    int up, down, LCM=lcm(down1,down2);
+    up = up1*down2 + up2*down1;
     down=LCM;
     reduction(up, down);
 }
 
 void sub(int up1,int down1,int up2,int down2) {
-    int num1, num2, LCM=lcm(down1,down2), up, down;
-    num1=LCM/down1*up1;
-    num2=LCM/down2*up2;
-    up=num1-num2;
-    down=LCM;
+    int up, down, LCM=lcm(down1,down2);
+    up = up1*down2 - up2*down1;
+    down = LCM;
     reduction(up,down);
 }
 

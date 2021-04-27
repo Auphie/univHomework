@@ -32,8 +32,8 @@ void Add(char a[], char b[], char ans[]){
 }
 
 char check_negative(char a[], char b[]){
-    int i, borrow, sign;
-    for(borrow=i=0; i<LEN; i++) {
+    int i, borrow=0, sign=0;
+    for(i=0; i<LEN; i++) {
         sign = a[i]-b[i]-borrow;
         if (sign<0)   	borrow=1;
         else  			borrow=0;
@@ -42,8 +42,8 @@ char check_negative(char a[], char b[]){
 }
 
 void Minus(char a[], char b[], char ans[]){
-    int i, borrow;
-    for(borrow=i=0; i<LEN; i++) {
+    int i, borrow=0;
+    for(i=0; i<LEN; i++) {
 		ans[i] = a[i]-b[i]-borrow;
         if(ans[i]<0) {
             borrow=1, ans[i]+=10; // -3 -> +7
