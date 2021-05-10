@@ -36,21 +36,42 @@ char* replaceWord(const char* s, const char* oldW, const char* newW){
     return result;
 }
   
+void split(char *arr, char* str, char* delim) {
+   char *s = strtok(str, delim);
+   int s_count=0;
 
+   while(s != NULL) {
+     *arr++=s;
+     s = strtok(NULL, delim);
+   }
+
+   for(int x=0;x<s_count;x++) //驗收成果
+      printf("%d %s\n",x,arr[x]);
+}
+
+int wordCounts(char* str, char* delim) {
+    int i, counts=1, size=strlen(str);
+    for (i=0; i<size; i++){
+        if (str[i]==' ')
+            counts+=1;
+    }
+    return counts;
+}
 
 
 int main(void){
+    int wordCount=0;
     char str[] = "Can you can a can as a canner can can a can";
     char c[] = "can";
     char d[] = "ban"; 
+    char delim=' ';
     char* result = NULL;
-  
-    // oldW string
-    printf("Old string: %s\n", str);
-  
+    wordCount=wordCounts(str, &delim);
+    char *arr[14];
     result = replaceWord(str, c, d);
-    printf("New String: %s\n", result);
-  
+//    printf("New String: %s\n", result);
+    split(arr, str, &delim);
+
     free(result);
     return 0;
 }

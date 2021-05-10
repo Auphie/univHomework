@@ -44,6 +44,7 @@ int main(void){
     numCmp(str1, str2);
     printf("%d",myNumCmp(str1, str2));
     split(str4, delim);
+    printf("str4=%s", str4);
 */
     char* strcat1=strcat(str1, str2);
     printf("strcat1=%s\n", strcat1);

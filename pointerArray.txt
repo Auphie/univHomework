@@ -1,0 +1,32 @@
+- arrayOfPointers arrP is an array consisting of pointers (由指標組成的array)
+    int* arrP[3];
+    int x, y, z;
+    arrP[0] = &x;
+    arrP[1] = &y;
+    arrP[2] = &z;
+
+- pointerToArray pArr is a pointer pointing to an array (指向一個array的指標)
+int (*pArr)[3];
+int array[3];
+pArr = &array;
+
+- int *f(), which represents the function f, the return type of the function is int *
+int *f(){
+    ...
+    return result;
+}
+
+- int (*f)(), indicating that this is a function pointer
+int (*p)(const char*, const char*)=strcmp;
+// p equals to strcmp(a, b)
+
+int square(int len){
+    return len*len;
+}
+
+int main() {
+    int (*ptr) (int) = square
+    int area = (*ptr)(20);
+    printf("area=%d", area);
+    return 0;
+}
