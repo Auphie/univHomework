@@ -10,13 +10,13 @@ typedef struct student_s {
 void write(char fileName[], student_t s) {
     FILE * fp;
     long lSize;
-    printf("name=%s, ID=%d, avg score=%.2f\n", s.name, s.student_id, (s.scorePG+s.scoreCI)/2.0);
     fp = fopen (fileName, "ab+");
     fseek(fp, 0, SEEK_END);
     lSize=ftell(fp);
     fwrite(&s, sizeof(student_t), 1, fp);
     rewind(fp);
-    fread(&s, sizeof(student_t), 1, fp);
+    fread(&s, sizeof(student_t), lSize, fp);
+    printf("name=%s, ID=%d, avg score=%.2f\n", s.name, s.student_id, (s.scorePG+s.scoreCI)/2.0);
     fclose(fp);
 }
 
